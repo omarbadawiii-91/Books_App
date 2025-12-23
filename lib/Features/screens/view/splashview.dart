@@ -1,4 +1,4 @@
-import 'package:books_app/Features/screens/Homepage_screen.dart';
+import 'package:books_app/Features/screens/loginscreen.dart';
 import'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 class Splashview extends StatelessWidget {
@@ -9,7 +9,7 @@ class Splashview extends StatelessWidget {
     return AnimatedSplashScreen(
       duration: 3000,
       splash: 'assets/images/7813793.jpg',
-      nextScreen: HomepageScreen(),
+      nextScreen: Loginscreen(),
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Color(0xff00344C),
     );
