@@ -1,3 +1,4 @@
+import 'package:books_app/Features/screens/view/items/go_router.dart';
 import 'package:books_app/Features/screens/view/splashview.dart';
 import 'package:books_app/firebase_options.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -8,9 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(const BooksApp());
 }
@@ -25,25 +24,24 @@ class BooksApp extends StatefulWidget {
 class _BooksAppState extends State<BooksApp> {
   @override
   void initState() {
-    FirebaseAuth.instance
-  .authStateChanges()
-  .listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-    } else {
-      print('User is signed in!');
-    }
-  });
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        home: Splashview()
+        routerConfig: AppRouter.router,
       ),
     );
   }
