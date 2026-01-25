@@ -1,16 +1,19 @@
-import 'package:books_app/Features/screens/view/items/go_router.dart';
-import 'package:books_app/Features/screens/view/splashview.dart';
+import 'package:books_app/Features/screens/navigate_between_screens/go_router.dart';
+import 'package:books_app/data/apiservice/apicall.dart';
+import 'package:books_app/dio/Repository/repo_fetch_data.dart';
+import 'package:books_app/dio/all_cubits/cubit_allbooks/allbook_cubit.dart';
+import 'package:books_app/dio/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
 import 'package:books_app/firebase_options.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   runApp(const BooksApp());
 }
 
@@ -24,6 +27,7 @@ class BooksApp extends StatefulWidget {
 class _BooksAppState extends State<BooksApp> {
   @override
   void initState() {
+    super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         print('User is currently signed out!');
@@ -31,17 +35,21 @@ class _BooksAppState extends State<BooksApp> {
         print('User is signed in!');
       }
     });
-    super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(),
-        routerConfig: AppRouter.router,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context)=>NewestbooksCubit(RepoFetchData(apiCall: ApiCall(Dio())))),
+        BlocProvider(create: (context)=>AllbooksCubit(RepoFetchData(apiCall: ApiCall(Dio())))),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark(),
+          routerConfig: AppRouter.router,
+        ),
       ),
     );
   }

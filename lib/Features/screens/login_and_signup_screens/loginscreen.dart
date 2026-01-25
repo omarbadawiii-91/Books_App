@@ -1,12 +1,17 @@
-import 'package:books_app/Features/constant_assist/assist_constant_widget.dart';
-import 'package:books_app/Features/screens/homepage_screen.dart';
-import 'package:books_app/Features/screens/signup.dart';
-import 'package:books_app/Features/screens/view/items/fieldforloginpage.dart';
-import 'package:books_app/Features/screens/view/items/login_with_google.dart';
+import 'package:books_app/Features/constant_assist_for_two_screen/assist_constant_widget.dart';
+import 'package:books_app/Features/screens/homepage_screen/homepage_screen.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/items_for_login/field_for_email.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/items_for_login/field_for_password.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/items_for_login/login_word.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/items_for_login/welcome_word.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/logo_login_page.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/show_dialog_for_check.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/signup.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/login_with_google.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
@@ -40,51 +45,10 @@ class _LoginscreenState extends State<Loginscreen> {
             child: Column(
               children: [
                 Logologinpage(),
-                Padding(
-                  padding: EdgeInsets.only(top: 11.h),
-                  child: Text(
-                    "Welcome To Booke App",
-                    style: GoogleFonts.poppins(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 50.h, left: 20.w),
-                    child: Text(
-                      "Login",
-                      style: GoogleFonts.poppins(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Fieldfortext(
-                    text: "Email Address",
-                    icon: Icon(Icons.email),
-                    controller: emailController,
-                    validator: (Value) =>
-                        Value!.isEmpty ? "Please Enter Email Address" : null,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Fieldfortext(
-                    text: "Password",
-                    icon: Icon(Icons.remove_red_eye_outlined),
-                    controller: passwordController,
-                    validator: (Value) =>
-                        Value!.isEmpty ? "Please Enter Password" : null,
-                  ),
-                ),
+                Welcome_word(),
+                Login_word(),
+                Field_for_email(emailController: emailController),
+                Field_for_password(passwordController: passwordController),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
@@ -97,7 +61,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           });
                         }
                         if (emailController.text.isEmpty) {
-                          Constantwidgetrepeated().messagesforemail(
+                         Check_user().messagesforemail(
                             "Please enter your email to reset password.",
                             context,
                           );
@@ -110,7 +74,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             await FirebaseAuth.instance.sendPasswordResetEmail(
                               email: emailController.text.trim(),
                             );
-                            Constantwidgetrepeated().messagesalert(
+                           Check_user().messagesalert(
                               "Password reset email sent! Please check your email.",
                               context,
                             );
@@ -121,7 +85,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         } catch (e) {
                           if (mounted) {
                             if (e == 'user-not-found') {
-                              Constantwidgetrepeated().messagesforemail(
+                             Check_user().messagesforemail(
                                 " Email not found.",
                                 context,
                               );
@@ -164,14 +128,12 @@ class _LoginscreenState extends State<Loginscreen> {
                                 isLoading = true;
                               });
                             }
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomepageScreen(),
-                              ),
-                            );
+                            GoRouter.of(context).pushReplacement("/homepage");
+                            setState(() {
+                              isLoading = false;
+                            });
                           } else {
-                            Constantwidgetrepeated().messagesforemail(
+                           Check_user().messagesforemail(
                               "Email is not verified. Please verify your email.",
                               context,
                             );
@@ -185,24 +147,24 @@ class _LoginscreenState extends State<Loginscreen> {
                           if (context.mounted) {
                             if (e.code == 'user-not-found' ||
                                 e.code == 'invalid-email') {
-                              Constantwidgetrepeated().messagesforemail(
+                             Check_user().messagesforemail(
                                 "Email Address is not found. Please try again!",
                                 context,
                               );
                             } else if (e.code == 'wrong-password') {
-                              Constantwidgetrepeated().messagesforpassword(
+                             Check_user().messagesforpassword(
                                 "Password is wrong. Please try again!",
                                 context,
                               );
                             } else if (e.code ==
                                 'The email address is badly formatted') {
-                              Constantwidgetrepeated().messagesforpassword(
+                             Check_user().messagesforpassword(
                                 "Email Address is not valid.",
                                 context,
                               );
                             } else if (e.code ==
                                 "The supplied auth credential is incorrect, malformed or has expired.") {
-                              Constantwidgetrepeated().messagesforemail(
+                             Check_user().messagesforemail(
                                 "Email Address is not found. Please try again!",
                                 context,
                               );
@@ -296,24 +258,6 @@ class _LoginscreenState extends State<Loginscreen> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class Logologinpage extends StatelessWidget {
-  const Logologinpage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 80.h),
-      child: Center(
-        child: CircleAvatar(
-          radius: 70.r,
-          backgroundImage: AssetImage("assets/images/shelf help logo.png"),
-          backgroundColor: const Color.fromARGB(0, 3, 33, 41),
         ),
       ),
     );

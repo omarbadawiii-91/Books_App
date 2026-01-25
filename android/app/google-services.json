@@ -12,7 +12,12 @@
           "package_name": "com.example.books_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "251988802186-5f9vvu2qgqa3dcdi544n6h2h46pkokvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB5Fx-yMcrdO7XKVZywuwQqwDu05hW2TjU"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251988802186-5f9vvu2qgqa3dcdi544n6h2h46pkokvq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "251988802186-vnp9od43pofp7on9i5dkarptn7las76k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.booksApp"
+              }
+            }
+          ]
         }
       }
     }

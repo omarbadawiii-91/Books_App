@@ -1,8 +1,10 @@
+import 'package:books_app/Features/screens/login_and_signup_screens/items/logo_login_page.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/show_dialog_for_check.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:books_app/Features/constant_assist/assist_constant_widget.dart';
-import 'package:books_app/Features/screens/loginscreen.dart';
-import 'package:books_app/Features/screens/view/items/fieldforloginpage.dart';
+import 'package:books_app/Features/constant_assist_for_two_screen/assist_constant_widget.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/loginscreen.dart';
+import 'package:books_app/Features/screens/login_and_signup_screens/items/fieldforloginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -107,6 +109,7 @@ class _SignupState extends State<Signup> {
                         isLoading = true;
                         setState(() {});
                         try {
+                          // ignore: unused_local_variable
                           final credential = await FirebaseAuth.instance
                               .createUserWithEmailAndPassword(
                                 email: emailController.text,
@@ -120,23 +123,23 @@ class _SignupState extends State<Signup> {
                           GoRouter.of(context).go('/login');
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {
-                            Constantwidgetrepeated().messagesforpassword(
+                            Check_user().messagesforpassword(
                               "The password provided is too weak.",
                               context,
                             );
                           } else if (e.code == 'email-already-in-use') {
-                            Constantwidgetrepeated().messagesforemail(
+                            Check_user().messagesforemail(
                               "The account already exists for that email.",
                               context,
                             );
                           } else if (e.code ==
                               "Password should be at least 6 characters") {
-                            Constantwidgetrepeated().messagesforpassword(
+                            Check_user().messagesforpassword(
                               "Password should be at least 6 characters",
                               context,
                             );
                           } else if (e.code == "invalid-email") {
-                            Constantwidgetrepeated().messagesforemail(
+                            Check_user().messagesforemail(
                               "The email address is not valid.",
                               context,
                             );
@@ -185,24 +188,6 @@ class _SignupState extends State<Signup> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class Logologinpage extends StatelessWidget {
-  const Logologinpage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 80.h),
-      child: Center(
-        child: CircleAvatar(
-          radius: 70.r,
-          backgroundImage: AssetImage("assets/images/shelf help logo.png"),
-          backgroundColor: const Color.fromARGB(0, 3, 33, 41),
         ),
       ),
     );

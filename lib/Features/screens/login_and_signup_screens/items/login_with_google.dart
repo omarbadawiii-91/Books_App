@@ -12,7 +12,7 @@ class Authgoogle {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
-        googleUsersignin!.authentication;
+        googleUsersignin.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
