@@ -31,9 +31,7 @@ class Item {
     id: json['id'] as String?,
     etag: json['etag'] as String?,
     selfLink: json['selfLink'] as String?,
-    volumeInfo: json['volumeInfo'] == null
-        ? null
-        : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+    volumeInfo: json['volumeInfo'] == null ? null : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
     saleInfo: json['saleInfo'] == null
         ? null
         : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),

@@ -1,8 +1,8 @@
 import 'package:books_app/Features/screens/navigate_between_screens/go_router.dart';
 import 'package:books_app/data/apiservice/apicall.dart';
-import 'package:books_app/dio/Repository/repo_fetch_data.dart';
-import 'package:books_app/dio/all_cubits/cubit_allbooks/allbook_cubit.dart';
-import 'package:books_app/dio/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_allbooks/allbook_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
+import 'package:books_app/data/repositories/homerepo_implement.dart';
 import 'package:books_app/firebase_options.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,8 +40,8 @@ class _BooksAppState extends State<BooksApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>NewestbooksCubit(RepoFetchData(apiCall: ApiCall(Dio())))),
-        BlocProvider(create: (context)=>AllbooksCubit(RepoFetchData(apiCall: ApiCall(Dio())))),
+        BlocProvider(create: (context) => AllbooksCubit(HomerepoImplement(ApiCall(Dio())))..fetchAllBooks("filter=free-ebooks&q=all"),),
+         BlocProvider(create: (context) => NewestbooksCubit(HomerepoImplement(ApiCall(Dio())))..fetchNewestBooks("filter=free-ebooks&Sorting=newest&q=all"),)
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

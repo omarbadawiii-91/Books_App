@@ -5,8 +5,8 @@ sealed class NewestbooksState {}
 
 final class NewestbooksInitial extends NewestbooksState {}
 final class NewestbooksSuccess extends NewestbooksState {
-  final List<BooksModel> books;
-  NewestbooksSuccess(this.books);
+  final List<BooksModel> booksmodel;
+  NewestbooksSuccess(this.booksmodel);
 }
 final class NewestbooksError extends NewestbooksState {
   final String errormessage;
