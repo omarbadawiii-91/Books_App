@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Welcome_word extends StatelessWidget {
-  const Welcome_word({
-    super.key,
-  });
+  const Welcome_word({super.key});
 
   @override
   Widget build(BuildContext context) {

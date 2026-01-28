@@ -1,5 +1,5 @@
 import 'package:books_app/Features/constant_assist_for_two_screen/assist_constant_widget.dart';
-import 'package:books_app/Features/screens/homepage_screen/items/best_seller.dart';
+import 'package:books_app/Features/screens/homepage_screen/items/Newest_books.dart';
 import 'package:books_app/Features/screens/homepage_screen/items/showbooks_top_screen.dart';
 import 'package:books_app/Features/screens/homepage_screen/items/top_headline_screen.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +43,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ],
               ),
             ),
-            SliverToBoxAdapter(child: Bestseller()),
+            SliverToBoxAdapter(child: Newestbook()),
           ],
         ),
       ),
     );
   }
 }
-

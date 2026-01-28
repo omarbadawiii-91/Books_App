@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 class ImageLinks {
   String? smallThumbnail;
   String? thumbnail;
@@ -15,15 +13,4 @@ class ImageLinks {
     'smallThumbnail': smallThumbnail,
     'thumbnail': thumbnail,
   };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! ImageLinks) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode => smallThumbnail.hashCode ^ thumbnail.hashCode;
 }

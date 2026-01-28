@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 import 'image_links.dart';
 import 'industry_identifier.dart';
 import 'panelization_summary.dart';
@@ -7,6 +5,7 @@ import 'reading_modes.dart';
 
 class VolumeInfo {
   String? title;
+  List<String>? authors;
   String? publishedDate;
   List<IndustryIdentifier>? industryIdentifiers;
   ReadingModes? readingModes;
@@ -25,6 +24,7 @@ class VolumeInfo {
 
   VolumeInfo({
     this.title,
+    this.authors,
     this.publishedDate,
     this.industryIdentifiers,
     this.readingModes,
@@ -44,6 +44,7 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
+    authors: (json['authors'] as List<dynamic>?)?.cast<String>(),
     publishedDate: json['publishedDate'] as String?,
     industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
         ?.map((e) => IndustryIdentifier.fromJson(e as Map<String, dynamic>))
@@ -53,7 +54,7 @@ class VolumeInfo {
         : ReadingModes.fromJson(json['readingModes'] as Map<String, dynamic>),
     pageCount: json['pageCount'] as int?,
     printType: json['printType'] as String?,
-    categories: json['categories'] as List<String>?,
+    categories: (json['categories'] as List<dynamic>?)?.cast<String>(),
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
@@ -73,6 +74,7 @@ class VolumeInfo {
 
   Map<String, dynamic> toJson() => {
     'title': title,
+    'authors': authors,
     'publishedDate': publishedDate,
     'industryIdentifiers': industryIdentifiers?.map((e) => e.toJson()).toList(),
     'readingModes': readingModes?.toJson(),
@@ -89,31 +91,4 @@ class VolumeInfo {
     'infoLink': infoLink,
     'canonicalVolumeLink': canonicalVolumeLink,
   };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! VolumeInfo) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      title.hashCode ^
-      publishedDate.hashCode ^
-      industryIdentifiers.hashCode ^
-      readingModes.hashCode ^
-      pageCount.hashCode ^
-      printType.hashCode ^
-      categories.hashCode ^
-      maturityRating.hashCode ^
-      allowAnonLogging.hashCode ^
-      contentVersion.hashCode ^
-      panelizationSummary.hashCode ^
-      imageLinks.hashCode ^
-      language.hashCode ^
-      previewLink.hashCode ^
-      infoLink.hashCode ^
-      canonicalVolumeLink.hashCode;
 }

@@ -21,9 +21,7 @@ class Topscreen extends StatelessWidget {
             ),
           ),
         ),
-       SizedBox(
-        width: 180.w,
-       ),
+        SizedBox(width: 180.w),
         Padding(
           padding: EdgeInsets.only(top: 15.h, left: 10.w),
           child: IconButton(

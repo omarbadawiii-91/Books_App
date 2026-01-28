@@ -3,6 +3,7 @@ import 'package:books_app/Features/screens/login_and_signup_screens/loginscreen.
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+
 class Splashview extends StatelessWidget {
   const Splashview({super.key});
 
@@ -18,14 +19,14 @@ class Splashview extends StatelessWidget {
     );
   }
 }
-chechuser(){
+
+chechuser() {
   User? user = FirebaseAuth.instance.currentUser;
-  if(user == null){
+  if (user == null) {
     Future.delayed(Duration(seconds: 3));
     return Loginscreen();
-  }else{
+  } else {
     Future.delayed(Duration(seconds: 4));
     return HomepageScreen();
   }
 }
- 

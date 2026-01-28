@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 class IndustryIdentifier {
   String? type;
   String? identifier;
@@ -14,15 +12,4 @@ class IndustryIdentifier {
   }
 
   Map<String, dynamic> toJson() => {'type': type, 'identifier': identifier};
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! IndustryIdentifier) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode => type.hashCode ^ identifier.hashCode;
 }

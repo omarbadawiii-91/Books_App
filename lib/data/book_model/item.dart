@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';
@@ -31,7 +29,9 @@ class Item {
     id: json['id'] as String?,
     etag: json['etag'] as String?,
     selfLink: json['selfLink'] as String?,
-    volumeInfo: json['volumeInfo'] == null ? null : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
+    volumeInfo: json['volumeInfo'] == null
+        ? null
+        : VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
     saleInfo: json['saleInfo'] == null
         ? null
         : SaleInfo.fromJson(json['saleInfo'] as Map<String, dynamic>),
@@ -53,23 +53,4 @@ class Item {
     'accessInfo': accessInfo?.toJson(),
     'searchInfo': searchInfo?.toJson(),
   };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! Item) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      kind.hashCode ^
-      id.hashCode ^
-      etag.hashCode ^
-      selfLink.hashCode ^
-      volumeInfo.hashCode ^
-      saleInfo.hashCode ^
-      accessInfo.hashCode ^
-      searchInfo.hashCode;
 }

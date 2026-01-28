@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 import 'epub.dart';
 import 'pdf.dart';
 
@@ -57,25 +55,4 @@ class AccessInfo {
     'accessViewStatus': accessViewStatus,
     'quoteSharingAllowed': quoteSharingAllowed,
   };
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    if (other is! AccessInfo) return false;
-    final mapEquals = const DeepCollectionEquality().equals;
-    return mapEquals(other.toJson(), toJson());
-  }
-
-  @override
-  int get hashCode =>
-      country.hashCode ^
-      viewability.hashCode ^
-      embeddable.hashCode ^
-      publicDomain.hashCode ^
-      textToSpeechPermission.hashCode ^
-      epub.hashCode ^
-      pdf.hashCode ^
-      webReaderLink.hashCode ^
-      accessViewStatus.hashCode ^
-      quoteSharingAllowed.hashCode;
 }

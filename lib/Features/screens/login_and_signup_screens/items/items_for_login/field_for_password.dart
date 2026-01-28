@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Field_for_password extends StatelessWidget {
-  const Field_for_password({
-    super.key,
-    required this.passwordController,
-  });
+  const Field_for_password({super.key, required this.passwordController});
 
   final TextEditingController passwordController;
 
@@ -18,8 +15,7 @@ class Field_for_password extends StatelessWidget {
         text: "Password",
         icon: Icon(Icons.remove_red_eye_outlined),
         controller: passwordController,
-        validator: (Value) =>
-            Value!.isEmpty ? "Please Enter Password" : null,
+        validator: (Value) => Value!.isEmpty ? "Please Enter Password" : null,
       ),
     );
   }

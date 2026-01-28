@@ -61,7 +61,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           });
                         }
                         if (emailController.text.isEmpty) {
-                         Check_user().messagesforemail(
+                          Check_user().messagesforemail(
                             "Please enter your email to reset password.",
                             context,
                           );
@@ -74,7 +74,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             await FirebaseAuth.instance.sendPasswordResetEmail(
                               email: emailController.text.trim(),
                             );
-                           Check_user().messagesalert(
+                            Check_user().messagesalert(
                               "Password reset email sent! Please check your email.",
                               context,
                             );
@@ -85,7 +85,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         } catch (e) {
                           if (mounted) {
                             if (e == 'user-not-found') {
-                             Check_user().messagesforemail(
+                              Check_user().messagesforemail(
                                 " Email not found.",
                                 context,
                               );
@@ -133,7 +133,7 @@ class _LoginscreenState extends State<Loginscreen> {
                               isLoading = false;
                             });
                           } else {
-                           Check_user().messagesforemail(
+                            Check_user().messagesforemail(
                               "Email is not verified. Please verify your email.",
                               context,
                             );
@@ -147,24 +147,24 @@ class _LoginscreenState extends State<Loginscreen> {
                           if (context.mounted) {
                             if (e.code == 'user-not-found' ||
                                 e.code == 'invalid-email') {
-                             Check_user().messagesforemail(
+                              Check_user().messagesforemail(
                                 "Email Address is not found. Please try again!",
                                 context,
                               );
                             } else if (e.code == 'wrong-password') {
-                             Check_user().messagesforpassword(
+                              Check_user().messagesforpassword(
                                 "Password is wrong. Please try again!",
                                 context,
                               );
                             } else if (e.code ==
                                 'The email address is badly formatted') {
-                             Check_user().messagesforpassword(
+                              Check_user().messagesforpassword(
                                 "Email Address is not valid.",
                                 context,
                               );
                             } else if (e.code ==
                                 "The supplied auth credential is incorrect, malformed or has expired.") {
-                             Check_user().messagesforemail(
+                              Check_user().messagesforemail(
                                 "Email Address is not found. Please try again!",
                                 context,
                               );

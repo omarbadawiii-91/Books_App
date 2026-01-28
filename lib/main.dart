@@ -2,6 +2,7 @@ import 'package:books_app/Features/screens/navigate_between_screens/go_router.da
 import 'package:books_app/data/apiservice/apicall.dart';
 import 'package:books_app/data/manger_view_model/all_cubits/cubit_allbooks/allbook_cubit.dart';
 import 'package:books_app/data/manger_view_model/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
+import 'package:books_app/data/manger_view_model/cubit_similar_books/similar_books_cubit.dart';
 import 'package:books_app/data/repositories/homerepo_implement.dart';
 import 'package:books_app/firebase_options.dart';
 import 'package:dio/dio.dart';
@@ -36,12 +37,25 @@ class _BooksAppState extends State<BooksApp> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AllbooksCubit(HomerepoImplement(ApiCall(Dio())))..fetchAllBooks("filter=free-ebooks&q=all"),),
-         BlocProvider(create: (context) => NewestbooksCubit(HomerepoImplement(ApiCall(Dio())))..fetchNewestBooks("filter=free-ebooks&Sorting=newest&q=all"),)
+        BlocProvider(
+          create: (context) =>
+              AllbooksCubit(HomerepoImplement(ApiCall(Dio())))
+                ..fetchAllBooks("filter=free-ebooks&q=all"),
+        ),
+        BlocProvider(
+          create: (context) =>
+              NewestbooksCubit(HomerepoImplement(ApiCall(Dio())))
+                ..fetchNewestBooks("filter=free-ebooks&Sorting=newest&q=all"),
+        ),
+        BlocProvider(
+          create: (context) =>
+              SimilarBooksCubit(HomerepoImplement(ApiCall(Dio())))
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

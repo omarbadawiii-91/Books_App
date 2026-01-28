@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Field_for_email extends StatelessWidget {
-  const Field_for_email({
-    super.key,
-    required this.emailController,
-  });
+  const Field_for_email({super.key, required this.emailController});
 
   final TextEditingController emailController;
 

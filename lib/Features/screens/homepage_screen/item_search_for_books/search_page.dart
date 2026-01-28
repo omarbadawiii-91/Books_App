@@ -14,34 +14,38 @@ class SearchPage extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           gradient: Constantwidgetrepeated().screencolor,
-          
         ),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(top: 15.h,),
+            padding: EdgeInsets.only(top: 15.h),
             child: Column(
               children: [
                 SizedBox(
                   height: 100.h,
-                  width: MediaQuery.of(context).size.width*0.8.w,
+                  width: MediaQuery.of(context).size.width * 0.8.w,
                   child: TextField(
                     decoration: InputDecoration(
                       filled: false,
-                      prefixIcon: IconButton(onPressed: (){
-                        GoRouter.of(context).pushReplacement('/homepage');
-                      }, icon: Icon(Icons.clear),),
+                      prefixIcon: IconButton(
+                        onPressed: () {
+                          GoRouter.of(context).pushReplacement('/homepage');
+                        },
+                        icon: Icon(Icons.clear),
+                      ),
                       prefixIconColor: const Color.fromARGB(157, 90, 85, 85),
                       suffixIcon: Icon(Icons.search),
                       suffixIconColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.r),
-                        gapPadding:10.w,
-                        borderSide: BorderSide(color: const Color.fromARGB(255, 255, 255, 255)),
+                        gapPadding: 10.w,
+                        borderSide: BorderSide(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
                       ),
                       hintText: "Search",
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
