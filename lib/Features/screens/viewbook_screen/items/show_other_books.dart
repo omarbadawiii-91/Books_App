@@ -42,7 +42,7 @@ class _ShowOtherBooksState extends State<ShowOtherBooks> {
                       child: Container(
                         height: 200.h,
                         width: 100.w,
-                       child: CachedNetworkImage(imageUrl: state.books.items![index].volumeInfo!.imageLinks!.thumbnail! ,fit: BoxFit.fill,) ,
+                       child: CachedNetworkImage(imageUrl: state.books.items![index].volumeInfo!.imageLinks!.thumbnail!, fit: BoxFit.fill,),
                       ),
                     ),
                   );

@@ -1,7 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:books_app/Features/constant_assist_for_two_screen/texts.dart';
+import 'package:books_app/Features/screens/viewbook_screen/viewbook.dart';
 import 'package:books_app/data/manger_view_model/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,8 +35,7 @@ class _NewestbookState extends State<Newestbook> {
             padding: EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                GoRouter.of(context).push('/viewbook',extra: state.booksmodel.items![index]);
-                
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Viewbook(bookmodel: state.booksmodel,index: index,)));
               },
               child:
               Row(
@@ -46,10 +47,12 @@ class _NewestbookState extends State<Newestbook> {
                       width: 100.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
-                        image: DecorationImage(
-                          image: NetworkImage(state.booksmodel.items![index].volumeInfo!.imageLinks!.thumbnail!,
-                          ),
-                          fit: BoxFit.fill
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5.r),
+                        child: CachedNetworkImage(
+                          imageUrl: state.booksmodel.items![index].volumeInfo!.imageLinks!.thumbnail!,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
@@ -60,7 +63,7 @@ class _NewestbookState extends State<Newestbook> {
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.5.w,
-                          child: Texts.headertitle(state.booksmodel.items![index].volumeInfo!.title!),
+                          child: Texts.headertitle(state.booksmodel.items![index].volumeInfo!.title!, 16.sp),
                         ),
                         SizedBox(height: 10.h),
                         SizedBox(

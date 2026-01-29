@@ -33,12 +33,7 @@ abstract class AppRouter {
           return const Loginscreen();
         },
       ),
-      GoRoute(
-        path: '/viewbook',
-        builder: (BuildContext context, GoRouterState state) {
-          return BlocProvider(create: (context) => SimilarBooksCubit(HomerepoImplement(ApiCall(Dio())))..fetchSimilarBooks("${state.extra}"), child:  Viewbook(bookmodel: state.extra as BookModel),);
-        },
-      ),
+      
       GoRoute(
         path: '/searchpage',
         builder: (context, state) => const SearchPage(),

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Texts {
-  static headertitle(String header) {
+  static headertitle(String header, double sp) {
     return Text(
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
       header,
       style: GoogleFonts.arimo(
         color: const Color.fromARGB(255, 255, 255, 255),
-        fontSize: 20,
+        fontSize: sp,
         fontWeight: FontWeight.w700,
       ),
     );

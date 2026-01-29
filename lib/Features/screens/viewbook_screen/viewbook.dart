@@ -11,8 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class Viewbook extends StatefulWidget {
-   Viewbook({super.key, this.bookmodel});
+   Viewbook({super.key, this.bookmodel, required this.index });
    BookModel? bookmodel;
+   int index ;
   @override
   State<Viewbook> createState() => _ViewbookState();
 }
@@ -40,7 +41,7 @@ class _ViewbookState extends State<Viewbook> {
                Column(
                   children: [
                     Top_line_view_book(),
-                    Showbook(),
+                    Showbook(bookmodel: widget.bookmodel,index: widget.index,),
                     SizedBox(height: 30.h),
                     Padding(
                       padding: EdgeInsets.only(bottom: 35.h),
