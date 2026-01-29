@@ -58,4 +58,22 @@ class HomerepoImplement implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, BookModel>> fetechBooksSearch({required String query})async {
+    try {
+      var datanewestbooks = await apiCall.fetchBooks(
+        "filter=free-ebooks&Sorting=relevance&q=$query",
+      );
+      BookModel newest ;
+      newest = BookModel.fromJson(datanewestbooks);
+      return Right(newest);
+    } catch (e) {
+      // ignore: deprecated_member_use
+      if (e is DioError) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

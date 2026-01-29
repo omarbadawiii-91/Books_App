@@ -7,7 +7,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 class Newestbook extends StatefulWidget {
   const Newestbook({super.key});
 
@@ -38,60 +37,63 @@ class _NewestbookState extends State<Newestbook> {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Viewbook(bookmodel: state.booksmodel,index: index,)));
               },
               child:
-              Row(
-                children: [
-                  Padding(
-                    padding:  EdgeInsets.only(left: 13.w),
-                    child: Container(
-                      height: 100.h,
-                      width: 100.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5.r),
-                        child: CachedNetworkImage(
-                          imageUrl: state.booksmodel.items![index].volumeInfo!.imageLinks!.thumbnail!,
-                          fit: BoxFit.fill,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 13.w),
+                      child: Container(
+                        height: 100.h,
+                        width: 100.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.r),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.r),
+                          child: CachedNetworkImage(
+                            imageUrl: state.booksmodel.items![index].volumeInfo!.imageLinks!.thumbnail!,
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5.w,
-                          child: Texts.headertitle(state.booksmodel.items![index].volumeInfo!.title!, 16.sp),
-                        ),
-                        SizedBox(height: 10.h),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5.w,
-                          child:  Row(
-  children: [
-    SizedBox(
-      width: MediaQuery.of(context).size.width * 0.3,
-      child: Text(
-        state.booksmodel.items![index].volumeInfo?.authors?.isNotEmpty == true
-            ? state.booksmodel.items![index].volumeInfo!.authors![0]
-            : " No Author",  
-      
-        style: TextStyle(fontSize: 12.sp),
-      ),
-    ),
-    SizedBox(width: 30),
-    SizedBox(
-      width: MediaQuery.of(context).size.width * 0.1.w,
-      child: Texts.anytext("Free", 16.sp),
-    ),
-  ],
-),
-                        )
-                      ],
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.w),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.5.w,
+                            child: Texts.headertitle(state.booksmodel.items![index].volumeInfo!.title!, 16.sp, 2),
+                          ),
+                          SizedBox(height: 10.h),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.5.w,
+                            child:  Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Text(
+                        state.booksmodel.items![index].volumeInfo?.authors?.isNotEmpty == true
+                            ? state.booksmodel.items![index].volumeInfo!.authors![0]
+                            : " No Author",  
+                      
+                        style: TextStyle(fontSize: 12.sp),
+                      ),
                     ),
-                  ),
-              ])
+                    SizedBox(width: 30),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.15.w,
+                      child: Texts.anytext("Free", 16.sp),
+                    ),
+                  ],
+                ),
+                          )
+                        ],
+                      ),
+                    ),
+                ]),
+              )
             ),
           ),
         );

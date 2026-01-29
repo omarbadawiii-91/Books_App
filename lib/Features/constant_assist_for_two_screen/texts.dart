@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Texts {
-  static headertitle(String header, double sp) {
+  static headertitle(String header, double sp,int maxlines) {
     return Text(
-      maxLines: 2,
+      maxLines: maxlines,
       overflow: TextOverflow.ellipsis,
       header,
       style: GoogleFonts.arimo(

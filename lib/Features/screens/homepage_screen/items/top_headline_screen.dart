@@ -1,10 +1,17 @@
+import 'package:books_app/Features/screens/homepage_screen/item_search_for_books/show_search.dart';
+import 'package:books_app/data/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+// ignore: must_be_immutable
+class Topscreen extends StatefulWidget {
+   Topscreen({super.key, this.bookmodel});
+BookModel ? bookmodel;
+String ? querytext;
+  @override
+  State<Topscreen> createState() => _TopscreenState();
+}
 
-class Topscreen extends StatelessWidget {
-  const Topscreen({super.key});
-
+class _TopscreenState extends State<Topscreen> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +33,7 @@ class Topscreen extends StatelessWidget {
           padding: EdgeInsets.only(top: 15.h, left: 10.w),
           child: IconButton(
             onPressed: () {
-              GoRouter.of(context).push('/searchpage');
+              showSearch(context: context, delegate: Showsearch(bookmodel: widget.bookmodel, ));
             },
             icon: Icon(
               Icons.search,

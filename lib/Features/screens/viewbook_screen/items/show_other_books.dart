@@ -1,4 +1,4 @@
-import 'package:books_app/data/manger_view_model/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_similar_books/similar_books_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

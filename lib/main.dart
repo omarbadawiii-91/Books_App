@@ -2,7 +2,8 @@ import 'package:books_app/Features/screens/navigate_between_screens/go_router.da
 import 'package:books_app/data/apiservice/apicall.dart';
 import 'package:books_app/data/manger_view_model/all_cubits/cubit_allbooks/allbook_cubit.dart';
 import 'package:books_app/data/manger_view_model/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
-import 'package:books_app/data/manger_view_model/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_searched_books/searched_book_cubit.dart';
 import 'package:books_app/data/repositories/homerepo_implement.dart';
 import 'package:books_app/firebase_options.dart';
 import 'package:dio/dio.dart';
@@ -31,8 +32,10 @@ class _BooksAppState extends State<BooksApp> {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
+        // ignore: avoid_print
         print('User is currently signed out!');
       } else {
+        // ignore: avoid_print
         print('User is signed in!');
       }
     });
@@ -55,6 +58,10 @@ class _BooksAppState extends State<BooksApp> {
         BlocProvider(
           create: (context) =>
               SimilarBooksCubit(HomerepoImplement(ApiCall(Dio())))
+        ),
+        BlocProvider(
+          create: (context) =>
+              SearchedBookCubit(HomerepoImplement(ApiCall(Dio())))
         ),
       ],
       child: ScreenUtilInit(

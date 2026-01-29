@@ -5,9 +5,10 @@ import 'package:books_app/Features/screens/viewbook_screen/items/show_book.dart'
 import 'package:books_app/Features/screens/viewbook_screen/items/show_other_books.dart';
 import 'package:books_app/Features/screens/viewbook_screen/items/top_line_view_book_screen.dart';
 import 'package:books_app/data/book_model/book_model.dart';
-import 'package:books_app/data/manger_view_model/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_similar_books/similar_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class Viewbook extends StatefulWidget {
@@ -45,7 +46,12 @@ class _ViewbookState extends State<Viewbook> {
                     SizedBox(height: 30.h),
                     Padding(
                       padding: EdgeInsets.only(bottom: 35.h),
-                      child: Custombutton(),
+                      child: Custombutton(onPressed: () async{
+                        final Uri url = Uri.parse( widget.bookmodel?.items?[widget.index].volumeInfo?.previewLink ??"");
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        }
+                      }),
                     ),
                     Align(
                       alignment: Alignment.centerLeft,

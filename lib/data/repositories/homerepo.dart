@@ -6,5 +6,7 @@ abstract class HomeRepo {
   Future<Either<Failure, BookModel>> fetechallbooks();
   Future<Either<Failure, BookModel>> fetechnewsbooks();
     Future<Either<Failure, BookModel>> fetechrelatedbooks({required String category});
+  Future<Either<Failure, BookModel>> fetechBooksSearch({required String query});
+
 
 }

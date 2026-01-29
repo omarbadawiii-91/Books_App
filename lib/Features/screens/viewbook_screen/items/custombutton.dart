@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Custombutton extends StatelessWidget {
-  const Custombutton({super.key});
+   Custombutton({super.key, required this.onPressed});
+    final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class Custombutton extends StatelessWidget {
             ),
           ),
           child: Text(
-            "Download",
+            "Free",
             style: GoogleFonts.firaSans(
               color: Colors.white,
               fontSize: 15.sp,
@@ -35,7 +36,7 @@ class Custombutton extends StatelessWidget {
         ),
 
         TextButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Color(0xff094C49)),
             fixedSize: WidgetStatePropertyAll(Size(100.w, 40.h)),

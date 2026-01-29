@@ -1,10 +1,8 @@
 import 'package:books_app/Features/constant_assist_for_two_screen/texts.dart';
 import 'package:books_app/data/book_model/book_model.dart';
-import 'package:books_app/data/manger_view_model/all_cubits/cubit_allbooks/allbook_cubit.dart';
-import 'package:books_app/data/manger_view_model/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/data/manger_view_model/all_cubits/cubit_similar_books/similar_books_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
@@ -42,11 +40,12 @@ class _ShowbookState extends State<Showbook> {
             SizedBox(height: 10.h),
             Center(
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.8.w,
                 child: Center(
                   child: Texts.headertitle(
                   widget.bookmodel?.items?[widget.index].volumeInfo?.title ?? 'No Title',
                   20.sp,
+                  3,
                 ),
                 )
               ),
