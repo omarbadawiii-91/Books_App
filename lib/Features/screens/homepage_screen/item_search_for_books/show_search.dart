@@ -113,7 +113,6 @@ class Showsearch extends SearchDelegate {
 
   @override
 Widget buildSuggestions(BuildContext context) {
-  // لو النص فارغ → نعرض رسالة أو اقتراحات عامة (اختياري)
   if (query.trim().isEmpty) {
     return Center(
       child: Text(
@@ -122,10 +121,6 @@ Widget buildSuggestions(BuildContext context) {
       ),
     );
   }
-
-  // مهم: نطلب البحث تلقائيًا لما يتغير query
-  // لكن عشان ما نعملش طلب كتير → نستخدم debounce (هنا مؤقت بسيط)
-  // لو عايز debounce أفضل → أضف Timer أو package زي rxdart
   context.read<SearchedBookCubit>().fetchSearchedBooks(query);
 
   return BlocBuilder<SearchedBookCubit, SearchedBookState>(
@@ -168,7 +163,6 @@ Widget buildSuggestions(BuildContext context) {
                 volume?.imageLinks?.thumbnail ??
                 '';
 
-            // لو الصورة http → نحولها https (كتير من Google Books بترجع http)
             if (imageUrl.startsWith('http://')) {
               imageUrl = imageUrl.replaceFirst('http://', 'https://');
             }
@@ -232,8 +226,6 @@ Widget buildSuggestions(BuildContext context) {
           },
         );
       }
-
-      // الافتراضي لو مفيش حاجة
       return const Center(child: Text("Please search for a book", style: TextStyle(color: Colors.white60)));
     },
   );
