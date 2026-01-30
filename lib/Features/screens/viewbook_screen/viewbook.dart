@@ -12,9 +12,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class Viewbook extends StatefulWidget {
-   Viewbook({super.key, this.bookmodel, required this.index });
+   Viewbook({super.key, this.bookmodel, required this.index , this.category});
    BookModel? bookmodel;
    int index ;
+   String? category ;
   @override
   State<Viewbook> createState() => _ViewbookState();
 }
@@ -23,10 +24,7 @@ class _ViewbookState extends State<Viewbook> {
  @override
   void initState() {
     super.initState();
-    SimilarBooksCubit.get(context).fetchSimilarBooks(
-      widget.bookmodel?.items?[0].volumeInfo?.categories != null
-          ? widget.bookmodel!.items![0].volumeInfo!.categories![0]
-          : "Programming",
+    SimilarBooksCubit.get(context).fetchSimilarBooks(widget.category ?? ""
     );
   }
   @override

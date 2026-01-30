@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class ShowOtherBooks extends StatefulWidget {
-   const ShowOtherBooks({super.key});
+    ShowOtherBooks({super.key, this.category});
+   String? category ;
   @override
   State<ShowOtherBooks> createState() => _ShowOtherBooksState();
 }

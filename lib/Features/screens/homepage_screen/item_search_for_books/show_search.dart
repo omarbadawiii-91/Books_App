@@ -169,7 +169,8 @@ Widget buildSuggestions(BuildContext context) {
 
             return ListTile(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Viewbook(bookmodel: books,index: index,)));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Viewbook(bookmodel: books,index: index,
+                category: volume?.categories?[0],)));
                 query = title;
                 showResults(context);
               },
