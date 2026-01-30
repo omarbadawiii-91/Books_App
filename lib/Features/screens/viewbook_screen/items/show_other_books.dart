@@ -7,8 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class ShowOtherBooks extends StatefulWidget {
-    ShowOtherBooks({super.key, this.category});
-   String? category ;
+   const ShowOtherBooks({super.key});
   @override
   State<ShowOtherBooks> createState() => _ShowOtherBooksState();
 }
