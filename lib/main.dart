@@ -1,10 +1,10 @@
-import 'package:books_app/Features/screens/navigate_between_screens/go_router.dart';
-import 'package:books_app/data/apiservice/apicall.dart';
-import 'package:books_app/data/manger_view_model/all_cubits/cubit_allbooks/allbook_cubit.dart';
-import 'package:books_app/data/manger_view_model/all_cubits/cubit_newest_boook/newestbooks_cubit.dart';
-import 'package:books_app/data/manger_view_model/all_cubits/cubit_similar_books/similar_books_cubit.dart';
-import 'package:books_app/data/manger_view_model/all_cubits/cubit_searched_books/searched_book_cubit.dart';
-import 'package:books_app/data/repositories/homerepo_implement.dart';
+import 'package:books_app/core/utils/navigate_between_screens/go_router.dart';
+import 'package:books_app/core/service/apicall.dart';
+import 'package:books_app/Features/homepage_screen/presentation/manager/cubit_allbooks/allbook_cubit.dart';
+import 'package:books_app/Features/homepage_screen/presentation/manager/cubit_newest_boook/newestbooks_cubit.dart';
+import 'package:books_app/Features/viewbook_screen/presentation/manger/cubit_similar_books/similar_books_cubit.dart';
+import 'package:books_app/Features/homepage_screen/presentation/manager/cubit_searched_books/searched_book_cubit.dart';
+import 'package:books_app/Features/homepage_screen/domain/repository/homerepo_implement.dart';
 import 'package:books_app/firebase_options.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
